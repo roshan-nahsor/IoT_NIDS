@@ -25,20 +25,35 @@ def print_traffic():
         #     # packet.tcp.dstport
         # )
 
+        if('IP' in packet):
         # IP layer
-        src_ip = packet.ip.src if 'IP' in packet else ''
-        dst_ip = packet.ip.dst if 'IP' in packet else ''
+            src_ip = packet.ip.src
+            dst_ip = packet.ip.dst
+        else:
+            src_ip = ''
+            dst_ip = ''
         
+        if('ETH' in packet):
         # Ethernet layer
-        src_eth = packet.eth.src if 'ETH' in packet else ''
-        dst_eth = packet.eth.dst if 'ETH' in packet else ''
+            src_eth = packet.eth.src
+            dst_eth = packet.eth.dst
+        else:
+            src_eth = ''
+            dst_eth = ''
+
         
+        if('TCP' in packet):
         # TCP layer (if available)
-        src_port = packet.tcp.srcport if 'TCP' in packet else ''
-        dst_port = packet.tcp.dstport if 'TCP' in packet else ''
+            src_port = packet.tcp.srcport
+            dst_port = packet.tcp.dstport
+        else:
+            src_port = ''
+            dst_port = ''
         
         # Print the extracted values, or empty string if the field doesn't exist
-        print(f"{src_ip:<15} {src_eth:<20} {src_port:<5} {dst_ip:<15} {dst_eth:<20} {dst_port:<5}")
+        # print(f"{src_ip:<15} {src_eth:<20} {src_port:<5} {dst_ip:<15} {dst_eth:<20} {dst_port:<5}")
+        print(f"{packet.layers} {src_ip} {src_eth} {src_port} {dst_ip} {dst_eth} {dst_port}")
+
         
 
 if __name__ == "__main__":
