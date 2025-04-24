@@ -1,97 +1,134 @@
+# import pyshark
+# import time
+# from tabulate import tabulate
+# import sys
+
+# # Define fields to monitor
+# FIELDS = [
+#     "arp.opcode", "arp.hw.size", "icmp.checksum", "icmp.seq_le", "icmp.unused",
+#     "http.content_length", "http.response", "http.tls_port",
+#     "tcp.ack", "tcp.ack_raw", "tcp.checksum", "tcp.connection.fin", "tcp.connection.rst",
+#     "tcp.connection.syn", "tcp.connection.synack", "tcp.flags", "tcp.flags.ack", "tcp.len", "tcp.seq",
+#     "udp.stream", "udp.time_delta",
+#     "dns.qry.name", "dns.qry.qu", "dns.qry.type", "dns.retransmission",
+#     "dns.retransmit_request", "dns.retransmit_request_in",
+#     "mqtt.conflag.cleansess", "mqtt.conflags", "mqtt.hdrflags", "mqtt.len",
+#     "mqtt.msg_decoded_as", "mqtt.msgtype", "mqtt.proto_len", "mqtt.topic_len", "mqtt.ver",
+#     "mbtcp.len", "mbtcp.trans_id", "mbtcp.unit_id"
+# ]
+
+# def get_field(packet, field):
+#     """Try to extract a value from a dotted protocol.field string."""
+#     try:
+#         proto, attr = field.split('.', 1)
+#         if hasattr(packet, proto):
+#             return getattr(getattr(packet, proto), attr)
+#     except Exception:
+#         return None
+
+# def print_live_capture(interface='wlan0'):
+#     print(f"> Starting live capture on {interface}...\n(Press Ctrl+C to stop)")
+#     capture = pyshark.LiveCapture(interface=interface, display_filter='not tcp.port == 22')
+
+#     for packet in capture.sniff_continuously():
+#         # Divide fields into two groups based on presence
+#         present_fields = []
+#         missing_fields = []
+
+#         for field in FIELDS:
+#             val = get_field(packet, field)
+#             if val is not None:
+#                 present_fields.append((field, str(val)))
+#             else:
+#                 missing_fields.append((field, "-"))
+
+#         # Clear the screen
+#         sys.stdout.write("\033[H\033[J")  # ANSI escape to clear screen and move cursor to top
+#         print("Live Packet Field Monitor")
+#         print("=" * 80)
+
+#         # Print in two side-by-side columns
+#         max_len = max(len(present_fields), len(missing_fields))
+#         present_fields += [("", "")] * (max_len - len(present_fields))
+#         missing_fields += [("", "")] * (max_len - len(missing_fields))
+
+#         table = []
+#         for left, right in zip(present_fields, missing_fields):
+#             table.append([
+#                 left[0], left[1], "│", right[0], right[1]
+#             ])
+
+#         print(tabulate(table, headers=["Present Field", "Value", "", "Missing Field", "Value"], tablefmt="fancy_grid"))
+
+#         time.sleep(0.5)  # Slow down updates just a bit for readability
+
+# if __name__ == "__main__":
+#     try:
+#         print_live_capture()
+#     except KeyboardInterrupt:
+#         print("\n> Capture stopped by user.")
+
+
 import pyshark
 import time
-import os
+from tabulate import tabulate
 import sys
 
-def print_traffic():
-    capture = pyshark.LiveCapture(interface='wlan0', display_filter='not tcp.port == 22')
-    print(">wlan0 selected")
-    capture.set_debug()
+# Only focus on MQTT fields
+MQTT_FIELDS = [
+    "mqtt.conflag.cleansess", "mqtt.conflags", "mqtt.hdrflags", "mqtt.len",
+    "mqtt.msg_decoded_as", "mqtt.msgtype", "mqtt.proto_len", "mqtt.topic_len", "mqtt.ver"
+]
 
-    capture.sniff(timeout=5)
-    capture.close()
-    print("Capturing traffic... Updating headers live...\n")
+def get_field(packet, field):
+    """Try to extract a value from a dotted protocol.field string."""
+    try:
+        proto, attr = field.split('.', 1)
+        if hasattr(packet, proto):
+            return getattr(getattr(packet, proto), attr)
+    except Exception:
+        return None
 
-    fields = {
-        'ARP Opcode': ('arp', 'opcode'),
-        'ARP HW Size': ('arp', 'hw_size'),
-        'ICMP Checksum': ('icmp', 'checksum'),
-        'ICMP Seq LE': ('icmp', 'seq_le'),
-        'ICMP Unused': ('icmp', 'unused'),
-        'HTTP Content-Length': ('http', 'content_length'),
-        'HTTP Response': ('http', 'response'),
-        'HTTP TLS Port': ('http', 'tls_port'),
-        'TCP ACK': ('tcp', 'ack'),
-        'TCP ACK Raw': ('tcp', 'ack_raw'),
-        'TCP Checksum': ('tcp', 'checksum'),
-        'TCP FIN': ('tcp', 'connection_fin'),
-        'TCP RST': ('tcp', 'connection_rst'),
-        'TCP SYN': ('tcp', 'connection_syn'),
-        'TCP SYNACK': ('tcp', 'connection_synack'),
-        'TCP Flags': ('tcp', 'flags'),
-        'TCP Flags ACK': ('tcp', 'flags_ack'),
-        'TCP Length': ('tcp', 'len'),
-        'TCP Seq': ('tcp', 'seq'),
-        'UDP Stream': ('udp', 'stream'),
-        'UDP Time Delta': ('udp', 'time_delta'),
-        'DNS Query Name': ('dns', 'qry_name'),
-        'DNS Query QU': ('dns', 'qry_qu'),
-        'DNS Query Type': ('dns', 'qry_type'),
-        'DNS Retransmission': ('dns', 'retransmission'),
-        'DNS Retransmit Req': ('dns', 'retransmit_request'),
-        'DNS Retransmit Req In': ('dns', 'retransmit_request_in'),
-        'MQTT Clean Session': ('mqtt', 'conflag_cleansess'),
-        'MQTT Flags': ('mqtt', 'conflags'),
-        'MQTT HDR Flags': ('mqtt', 'hdrflags'),
-        'MQTT Length': ('mqtt', 'len'),
-        'MQTT Decoded As': ('mqtt', 'msg_decoded_as'),
-        'MQTT Msg Type': ('mqtt', 'msgtype'),
-        'MQTT Proto Len': ('mqtt', 'proto_len'),
-        'MQTT Topic Len': ('mqtt', 'topic_len'),
-        'MQTT Version': ('mqtt', 'ver'),
-        'Modbus TCP Length': ('mbtcp', 'len'),
-        'Modbus Trans ID': ('mbtcp', 'trans_id'),
-        'Modbus Unit ID': ('mbtcp', 'unit_id'),
-    }
+def print_live_capture(interface='wlan0'):
+    print(f"> Starting live MQTT capture on {interface}...\n(Press Ctrl+C to stop)")
+    capture = pyshark.LiveCapture(interface=interface, display_filter='mqtt')
 
-    # Initially, all fields are considered "missing"
-    missing_fields = list(fields.keys())
-    received_fields = []
+    # Preprint enough lines to "reserve" screen space
+    print("\n" * (len(MQTT_FIELDS) + 6))  # leave space for header and buffer
 
-    def print_live_table():
-        os.system('clear' if os.name == 'posix' else 'cls')
-        print("======== LIVE PACKET HEADER STATUS ========")
-        print(f"{'Received Fields':<40} | {'Missing Fields'}")
-        print("-" * 80)
-        for i in range(max(len(received_fields), len(missing_fields))):
-            left = received_fields[i] if i < len(received_fields) else ""
-            right = missing_fields[i] if i < len(missing_fields) else ""
-            print(f"{left:<40} | {right}")
-        print("===========================================\n")
-        print("Listening... press Ctrl+C to stop.")
+    for packet in capture.sniff_continuously():
+        present_fields = []
+        missing_fields = []
 
-    for packet in capture:
-        for label, (layer_name, attr) in fields.items():
-            present = False
-            if hasattr(packet, layer_name):
-                layer = getattr(packet, layer_name)
-                if hasattr(layer, attr):
-                    present = True
+        for field in MQTT_FIELDS:
+            val = get_field(packet, field)
+            if val is not None:
+                present_fields.append((field, str(val)))
+            else:
+                missing_fields.append((field, "-"))
 
-            if present and label in missing_fields:
-                missing_fields.remove(label)
-                received_fields.append(label)
-            elif not present and label in received_fields:
-                received_fields.remove(label)
-                missing_fields.append(label)
+        # Move cursor to top-left without clearing whole screen
+        sys.stdout.write("\033[H")
+        sys.stdout.flush()
 
-        print_live_table()
-        time.sleep(1)
+        print("📡 Live MQTT Packet Field Monitor")
+        print("=" * 50)
+
+        max_len = max(len(present_fields), len(missing_fields))
+        present_fields += [("", "")] * (max_len - len(present_fields))
+        missing_fields += [("", "")] * (max_len - len(missing_fields))
+
+        table = []
+        for left, right in zip(present_fields, missing_fields):
+            table.append([
+                left[0], left[1], "│", right[0], right[1]
+            ])
+
+        print(tabulate(table, headers=["Present Field", "Value", "", "Missing Field", "Value"], tablefmt="simple"))
+        time.sleep(0.3)  # adjust refresh rate
 
 if __name__ == "__main__":
-    print(">main started\n")
     try:
-        print_traffic()
+        print_live_capture()
     except KeyboardInterrupt:
-        print("\n\n>Interrupted by user. Exiting gracefully.")
-    print("\n>main ended")
+        print("\n> Capture stopped by user.")
