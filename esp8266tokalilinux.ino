@@ -4,8 +4,8 @@
 // // #include <WiFiUdp.h>
 
 // // // Replace with your Wi-Fi credentials
-// // const char* ssid = "Airtel_kcma_8185";
-// // const char* password = "Arati123";
+// // const char* ssid = "ssid";
+// // const char* password = "password";
 
 // // // UDP object
 // // WiFiUDP udp;
@@ -95,8 +95,8 @@
 
 
 // #include <ESP8266WiFi.h>
-// const char* ssid = "Airtel_kcma_8185";
-// const char* password = "Arati123";
+// const char* ssid = "ssid";
+// const char* password = "password";
 
 // void setup() {
 //   Serial.begin(115200);
@@ -121,8 +121,8 @@
 #include <ESP8266WiFi.h>
 #include <WiFiUdp.h>
 
-const char* ssid = "Airtel_nahi_hai";
-const char* password = "505aur202se201";
+const char* ssid = "ssid";
+const char* password = "password";
 
 
 // Kali Linux IP and port number
@@ -173,7 +173,7 @@ void setup() {
 
 void loop() {
   for (int i = 0; i < 15; i++) {
-    delay(delays_ms[i]);
+    // delay(delays_ms[i]);
 
     udp.beginPacket(ras_pi, port);
     udp.write(packets[i].c_str());
