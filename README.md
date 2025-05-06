@@ -1,4 +1,4 @@
-# NIDS
+# IoT_NIDS
 
 This project is a Network Intrusion Detection System which does Anomaly Based Detection tailored towards IoT systems.\The system in this project consists of a RaspberryPi Microcomputer acting as the MQTT server for an ESP32 node that simulates a Home Automation System. An ESP8266 NodeMCU is used to launch attacks (especially DoS) on the server. The NIDS deployed on the RaspberryPi server should be able to detect attacks and notify the concerned person.
 
