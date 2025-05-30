@@ -3499,7 +3499,7 @@
 	)
 	(wire
 		(pts
-			(xy 217.17 128.27) (xy 232.41 128.27)
+			(xy 217.17 128.27) (xy 233.68 128.27)
 		)
 		(stroke
 			(width 0)
@@ -5018,26 +5018,6 @@
 			"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
 		)
 	)
-	(label "CD_PS"
-		(at 232.41 128.27 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "112f5083-721f-4837-a7e2-a7aa7b369cfe")
-	)
-	(label "CD_PS"
-		(at 234.95 90.17 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "c8a84533-d80d-4e51-b032-e68c77b0ab32")
-	)
 	(global_label "D12{slash}MISO"
 		(shape input)
 		(at 44.45 115.57 180)
@@ -5166,6 +5146,28 @@
 					(size 1.27 1.27)
 				)
 				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "CD_PS"
+		(shape input)
+		(at 226.06 128.27 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "22d92850-cb6d-4547-91c9-edcc72529a3e")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 235.0323 128.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
 				(hide yes)
 			)
 		)
@@ -5755,6 +5757,28 @@
 		(uuid "f2c7b205-dbbf-45a1-8499-1157987ebf55")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 38.9853 105.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "CD_PS"
+		(shape input)
+		(at 234.95 90.17 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "ffd9a96c-ae1f-49d2-b6c8-c74fd5929be2")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 225.9777 90.17 0)
 			(effects
 				(font
 					(size 1.27 1.27)
