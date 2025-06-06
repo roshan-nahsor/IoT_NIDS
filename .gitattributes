@@ -1,6 +1,14 @@
 # Set the default behavior, in case people don't have core.autocrlf set.
-# * text=auto
+* text=auto
+
+# Explicitly declare text files you want to always be normalized and converted
+# to native line endings on checkout.
+*.c     text
+*.h     text
 
 # Declare files that will always have CRLF line endings on checkout.
-*.ki_cad_prl text eol=lf
-*.ki_cad_pro text eol=lf
+*.ino   text eol=lf
+
+# Denote all files that are truly binary and should not be modified.
+# *.png binary
+# *.jpg binary
