@@ -21,7 +21,6 @@ void add_log();
 void init_display();
 void print_display();
 
-
 void setup() {
     Serial.begin(9600);
     delay(500);
