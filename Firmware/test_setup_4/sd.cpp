@@ -33,7 +33,7 @@ void init_file() {
 void add_log() {
     String dataString = "";
 //              mode spd c    ci   co   pi   po   ei   eo   lf   rf   et   eh   ct   ch
-    dataString = "15,255,45.3,25.6,25.6,25.6,25.6,25.6,25.6,25.6,25.6,25.6,25.6,25.6,04.6;";
+    dataString = "15,255,45.3,25.6,25.6,25.6,25.6,25.6,25.6,25.6,25.6,25.6,25.6,25.6,14.6;";
 
     File dataFile = SD.open("logs/f_4.csv", FILE_WRITE);
 

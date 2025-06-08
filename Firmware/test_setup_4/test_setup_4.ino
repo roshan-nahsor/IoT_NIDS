@@ -5,19 +5,6 @@
 
 // #include "sd.cpp"
 
-// Simple I2C test for ebay 128x64 oled.
-
-#include <Wire.h>
-#include "SSD1306Ascii.h"
-#include "SSD1306AsciiWire.h"
-
-// 0X3C+SA0 - 0x3C or 0x3D
-#define I2C_ADDRESS 0x3C
-
-// Define proper RST_PIN if required.
-#define RST_PIN -1
-
-SSD1306AsciiWire oled;
 
 
 // Use 1-byte page buffer mode for low RAM on Nano
@@ -31,21 +18,13 @@ void init_sd();
 void init_file();
 void add_log();
 
+void init_display();
+void print_display();
+
 
 void setup() {
     Serial.begin(9600);
     delay(500);
-
-    Wire.begin();
-    Wire.setClock(400000L);
-
-#if RST_PIN >= 0
-    oled.begin(&Adafruit128x64, I2C_ADDRESS, RST_PIN);
-#else // RST_PIN >= 0
-    oled.begin(&Adafruit128x64, I2C_ADDRESS);
-#endif // RST_PIN >= 0
-
-    oled.setFont(Adafruit5x7);
 
 
   // Serial.println("Starting...");
@@ -95,6 +74,7 @@ void setup() {
 
     // u8x8.begin();
     // u8x8.setPowerSave(0);
+    init_display();
 }
 
 void loop() {
@@ -123,9 +103,7 @@ void loop() {
     // u8x8.refreshDisplay();		// only required for SSD1606/7  
     // delay(2000);
 
-    oled.clear();
-    oled.println("0123456789");
-    oled.println("Hello World!");
+    print_display();
     delay(1000);
 
     add_log();
