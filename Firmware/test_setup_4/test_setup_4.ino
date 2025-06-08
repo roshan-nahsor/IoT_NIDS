@@ -19,21 +19,36 @@ void setup() {
   Serial.println("Starting...");
 
   // Init SPI bus early
-  SPI.begin();
+  // SPI.begin();
 
   // Setup SD_CS pin as output and deselect SD card
-  pinMode(SD_CS, OUTPUT);
-  digitalWrite(SD_CS, HIGH);
+  // pinMode(SD_CS, OUTPUT);
+  // digitalWrite(SD_CS, HIGH);
 
-  Serial.println("Initializing SD card...");
+  // Serial.println("Initializing SD card...");
   if (!SD.begin(SD_CS)) {
     Serial.println("SD initialization failed!");
     // while (1); // Halt here if SD init fails
   }
-  Serial.println("SD initialized successfully.");
+  // Serial.println("SD initialized successfully.");
+  String dataString = "---new log---";
+
+    File dataFile = SD.open("logs/f_4.csv", FILE_WRITE);
+
+    // if the file is available, write to it:
+    if (dataFile) {
+        dataFile.println(dataString);
+        dataFile.close();
+        // print to the serial port too:
+        Serial.println(dataString);
+    }
+    // if the file isn't open, pop up an error:
+    else {
+        Serial.println("loop(): error opening datalog.txt");
+    }
 
   // Init I2C and OLED display
-  Wire.begin();
+  // Wire.begin();
 //   u8g2.begin();
 
   // Display startup message
@@ -77,7 +92,7 @@ void loop() {
 
   String dataString = "";
 //              mode spd c    ci   co   pi   po   ei   eo   lf   rf   et   eh   ct   ch
-    dataString = "15,255,45.3,25.6,25.6,25.6,25.6,25.6,25.6,25.6,25.6,25.6,25.6,25.6,25.6;";
+    dataString = "15,255,45.3,25.6,25.6,25.6,25.6,25.6,25.6,25.6,25.6,25.6,25.6,25.6,04.4;";
 
     File dataFile = SD.open("logs/f_4.csv", FILE_WRITE);
 
