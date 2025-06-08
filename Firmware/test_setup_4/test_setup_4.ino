@@ -27,7 +27,34 @@ SSD1306AsciiWire oled;
 
 
 
-const int SD_CS = 10;
+// const int SD_CS = 10;
+#define cs_pin 10
+
+void init_sd() {
+    if (!SD.begin(cs_pin)) {
+        Serial.println("SD initialization failed!");
+        // while (1); // Halt here if SD init fails
+    }
+}
+
+void init_file() {
+    String dataString = "---new log---";
+
+    File dataFile = SD.open("logs/f_4.csv", FILE_WRITE);
+
+    // if the file is available, write to it:
+    if (dataFile) {
+        dataFile.println(dataString);
+        dataFile.close();
+        // print to the serial port too:
+        Serial.println(dataString);
+    }
+    // if the file isn't open, pop up an error:
+    else {
+        Serial.println("loop(): error opening datalog.txt");
+    }
+
+}
 
 void setup() {
     Serial.begin(9600);
@@ -55,26 +82,29 @@ void setup() {
   // digitalWrite(SD_CS, HIGH);
 
   // Serial.println("Initializing SD card...");
-  if (!SD.begin(SD_CS)) {
-    Serial.println("SD initialization failed!");
-    // while (1); // Halt here if SD init fails
-  }
+//   if (!SD.begin(SD_CS)) {
+//     Serial.println("SD initialization failed!");
+//     // while (1); // Halt here if SD init fails
+//   }
   // Serial.println("SD initialized successfully.");
-  String dataString = "---new log---";
+    init_sd();
 
-    File dataFile = SD.open("logs/f_4.csv", FILE_WRITE);
+    // String dataString = "---new log---";
 
-    // if the file is available, write to it:
-    if (dataFile) {
-        dataFile.println(dataString);
-        dataFile.close();
-        // print to the serial port too:
-        Serial.println(dataString);
-    }
-    // if the file isn't open, pop up an error:
-    else {
-        Serial.println("loop(): error opening datalog.txt");
-    }
+    // File dataFile = SD.open("logs/f_4.csv", FILE_WRITE);
+
+    // // if the file is available, write to it:
+    // if (dataFile) {
+    //     dataFile.println(dataString);
+    //     dataFile.close();
+    //     // print to the serial port too:
+    //     Serial.println(dataString);
+    // }
+    // // if the file isn't open, pop up an error:
+    // else {
+    //     Serial.println("loop(): error opening datalog.txt");
+    // }
+    init_file();
 
   // Init I2C and OLED display
   // Wire.begin();
@@ -124,7 +154,7 @@ void loop() {
 
     String dataString = "";
 //              mode spd c    ci   co   pi   po   ei   eo   lf   rf   et   eh   ct   ch
-    dataString = "15,255,45.3,25.6,25.6,25.6,25.6,25.6,25.6,25.6,25.6,25.6,25.6,25.6,04.5;";
+    dataString = "15,255,45.3,25.6,25.6,25.6,25.6,25.6,25.6,25.6,25.6,25.6,25.6,25.6,04.6;";
 
     File dataFile = SD.open("logs/f_4.csv", FILE_WRITE);
 
