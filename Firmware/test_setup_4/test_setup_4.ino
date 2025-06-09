@@ -29,12 +29,14 @@ void set_ds_resolution();
 void request_ds_values();
 // void print_ds_value();
 // void print_ds_value(DeviceAddress deviceAddress) {
+void assign_ds_values();
+
 
 void get_pressure();
 
+void init_dht_sensors();
+void get_dht_values();
 
-
-void assign_ds_values();
 
 void setup() {
     Serial.begin(9600);
@@ -94,6 +96,7 @@ void setup() {
     init_ds_sensors();
     set_ds_resolution();
 
+    init_dht_sensors();
 }
 
 void loop() {
@@ -129,6 +132,7 @@ void loop() {
     // print_ds_value();
     assign_ds_values();
     get_pressure();
+    get_dht_values();
 
     check_save();
 

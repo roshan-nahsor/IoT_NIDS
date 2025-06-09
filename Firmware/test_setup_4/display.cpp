@@ -49,6 +49,20 @@ void print_display() {
     oled.print(" ");
     oled.print("PO:");
     oled.print(po,1);
+    oled.println(" ");
+
+    oled.print("ET:");
+    oled.print(et);
     oled.print(" ");
+    oled.print("EH:");
+    oled.print(eh);
+    oled.println(" ");
+
+    oled.print("CT:");
+    oled.print(ct);
+    oled.print(" ");
+    oled.print("CH:");
+    oled.print(ch);
+    oled.println(" ");
     // oled.println("Hello World!");
 }
