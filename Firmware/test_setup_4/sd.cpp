@@ -8,7 +8,7 @@
 void init_sd() {
     if (!SD.begin(cs_pin)) {
         Serial.println("SD initialization failed!");
-        // while (1); // Halt here if SD init fails
+            // while (1); // Halt here if SD init fails
     }
 }
 
@@ -17,14 +17,14 @@ void init_file() {
 
     File dataFile = SD.open("logs/f_4.csv", FILE_WRITE);
 
-    // if the file is available, write to it:
+        // if the file is available, write to it:
     if (dataFile) {
         dataFile.println(dataString);
         dataFile.close();
-        // print to the serial port too:
+            // print to the serial port too:
         Serial.println(dataString);
     }
-    // if the file isn't open, pop up an error:
+        // if the file isn't open, pop up an error:
     else {
         Serial.println("loop(): error opening datalog.txt");
     }

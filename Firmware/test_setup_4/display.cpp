@@ -32,23 +32,33 @@ void init_display() {
 void print_display() {
     oled.clear();
     oled.set2X();
-    oled.println(step);
+    oled.print(step);
+    oled.print("   C:");
+    oled.print(c);
+    oled.println(" ");
     oled.set1X();
-    oled.print("C:");
-    oled.print(c,1);
+        // oled.print("C:");
+        // oled.print(c);
+        // oled.print(" ");
+    oled.print("CI:");
+    oled.print(ci);
     oled.print(" ");
-    oled.print("I:");
-    oled.print(ci,1);
-    oled.print(" ");
-    oled.print("O:");
-    oled.println(co,1);
-    // oled.print("\t");
+    oled.print("CO:");
+    oled.println(co);
+        // oled.print("\t");
 
-    oled.print("PI:");
-    oled.print(pi,1);
+    oled.print("EI:");
+    oled.print(ei);
     oled.print(" ");
-    oled.print("PO:");
-    oled.print(po,1);
+    oled.print("EO:");
+    oled.print(eo);
+    oled.println(" ");
+
+    oled.print("LF:");
+    oled.print(lf);
+    oled.print(" ");
+    oled.print("RF:");
+    oled.print(rf);
     oled.println(" ");
 
     oled.print("ET:");
@@ -64,5 +74,5 @@ void print_display() {
     oled.print("CH:");
     oled.print(ch);
     oled.println(" ");
-    // oled.println("Hello World!");
+        // oled.println("Hello World!");
 }
