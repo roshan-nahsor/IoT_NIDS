@@ -34,7 +34,21 @@ void print_display() {
     oled.set2X();
     oled.println(step);
     oled.set1X();
-    oled.print("RF: ");
-    oled.print(rf);
+    oled.print("C:");
+    oled.print(c,1);
+    oled.print(" ");
+    oled.print("I:");
+    oled.print(ci,1);
+    oled.print(" ");
+    oled.print("O:");
+    oled.println(co,1);
+    // oled.print("\t");
+
+    oled.print("PI:");
+    oled.print(pi,1);
+    oled.print(" ");
+    oled.print("PO:");
+    oled.print(po,1);
+    oled.print(" ");
     // oled.println("Hello World!");
 }

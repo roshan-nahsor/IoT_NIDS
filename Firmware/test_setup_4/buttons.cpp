@@ -1,6 +1,9 @@
 #include <Arduino.h>
 #include "globals.h"
 
+void add_log();
+
+
 #define pin2 2      // Button pin
 #define pin3 3      // Button pin
 volatile bool down_pressed = false;
@@ -121,7 +124,7 @@ void check_save() {
             // analogWrite(compressor_pin, speed);
             // Serial.println(speed);
             // Serial.println(step);
-            // add_log();
+            add_log();
         }
         // compressor_speed_canvas();
     }

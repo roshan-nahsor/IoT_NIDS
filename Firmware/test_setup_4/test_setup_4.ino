@@ -30,6 +30,9 @@ void request_ds_values();
 // void print_ds_value();
 // void print_ds_value(DeviceAddress deviceAddress) {
 
+void get_pressure();
+
+
 
 void assign_ds_values();
 
@@ -125,8 +128,9 @@ void loop() {
     request_ds_values();
     // print_ds_value();
     assign_ds_values();
+    get_pressure();
 
     check_save();
 
-    add_log();
+    // add_log();
 }
