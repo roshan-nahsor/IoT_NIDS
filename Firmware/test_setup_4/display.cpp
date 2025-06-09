@@ -12,6 +12,8 @@
 
 SSD1306AsciiWire oled;
 
+#include "globals.h"
+
 void init_display() {
     
     Wire.begin();
@@ -29,6 +31,9 @@ void init_display() {
 
 void print_display() {
     oled.clear();
+    oled.set2X();
+    oled.println(step);
+    oled.set1X();
     oled.println("0123456789");
     oled.println("Hello World!");
 }
