@@ -34,6 +34,7 @@ void print_display() {
     oled.set2X();
     oled.println(step);
     oled.set1X();
-    oled.println("0123456789");
-    oled.println("Hello World!");
+    oled.print("RF: ");
+    oled.print(rf);
+    // oled.println("Hello World!");
 }

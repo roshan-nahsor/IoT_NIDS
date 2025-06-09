@@ -24,6 +24,15 @@ void print_display();
 void init_buttons();
 void check_save();
 
+void init_ds_sensors();
+void set_ds_resolution();
+void request_ds_values();
+// void print_ds_value();
+// void print_ds_value(DeviceAddress deviceAddress) {
+
+
+void assign_ds_values();
+
 void setup() {
     Serial.begin(9600);
     delay(500);
@@ -78,6 +87,10 @@ void setup() {
     // u8x8.setPowerSave(0);
     init_display();
     init_buttons();
+
+    init_ds_sensors();
+    set_ds_resolution();
+
 }
 
 void loop() {
@@ -108,6 +121,10 @@ void loop() {
 
     print_display();
     delay(1000);
+
+    request_ds_values();
+    // print_ds_value();
+    assign_ds_values();
 
     check_save();
 
