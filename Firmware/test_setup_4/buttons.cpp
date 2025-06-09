@@ -26,7 +26,7 @@ void down_interrupt(){
     if (down_pressed) {
         down_pressed = false;  // Clear the flag
 
-        Serial.println("1");
+        // Serial.println(F("1"));
 
         // Optional: reset speed/step
         // speed = 0;
@@ -38,7 +38,7 @@ void down_interrupt(){
         // Optional function call
         // compressor_speed_canvas();
 
-        Serial.print("DOWN ");
+        Serial.print(F("DOWN "));
         if (step > 0) {
             step--;
         }
@@ -68,7 +68,7 @@ void up_interrupt(){
     if (up_pressed) {
         up_pressed = false;  // Clear the flag
 
-        Serial.println("2");
+        // Serial.println(F("2"));
 
         // Optional: reset speed/step
         // speed = 0;
@@ -79,7 +79,7 @@ void up_interrupt(){
 
         // Optional function call
         // compressor_speed_canvas();
-        Serial.print("UP ");
+        Serial.print(F("UP "));
         if (step < steps) {
             step++;
         }
@@ -115,17 +115,9 @@ void init_buttons() {
 
 void check_save() {
     bool save_button = digitalRead(pin4);
-    if (save != save_button) {
-        save = save_button;
-        if (save == false) {
-            Serial.println("SAVED");
-            // speed=0;
-            // step=0;
-            // analogWrite(compressor_pin, speed);
-            // Serial.println(speed);
-            // Serial.println(step);
-            add_log();
-        }
-        // compressor_speed_canvas();
+    if (save == true && save_button == false) {  // falling edge
+        Serial.println(F("SAVED"));
+        add_log();
     }
+    save = save_button;  // update state
 }

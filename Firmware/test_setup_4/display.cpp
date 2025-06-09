@@ -47,19 +47,19 @@ void print_display() {
     oled.println(co);
         // oled.print("\t");
 
-    oled.print("EI:");
-    oled.print(ei);
-    oled.print(" ");
-    oled.print("EO:");
-    oled.print(eo);
-    oled.println(" ");
+    // oled.print("EI:");
+    // oled.print(ei);
+    // oled.print(" ");
+    // oled.print("EO:");
+    // oled.print(eo);
+    // oled.println(" ");
 
-    oled.print("LF:");
-    oled.print(lf);
-    oled.print(" ");
-    oled.print("RF:");
-    oled.print(rf);
-    oled.println(" ");
+    // oled.print("LF:");
+    // oled.print(lf);
+    // oled.print(" ");
+    // oled.print("RF:");
+    // oled.print(rf);
+    // oled.println(" ");
 
     oled.print("ET:");
     oled.print(et);
