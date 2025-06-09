@@ -21,6 +21,9 @@ void add_log();
 void init_display();
 void print_display();
 
+void init_buttons();
+void check_save();
+
 void setup() {
     Serial.begin(9600);
     delay(500);
@@ -74,6 +77,7 @@ void setup() {
     // u8x8.begin();
     // u8x8.setPowerSave(0);
     init_display();
+    init_buttons();
 }
 
 void loop() {
@@ -104,6 +108,8 @@ void loop() {
 
     print_display();
     delay(1000);
+
+    check_save();
 
     add_log();
 }
