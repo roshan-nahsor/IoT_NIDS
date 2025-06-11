@@ -33,7 +33,7 @@ void print_display() {
     oled.clear();
     oled.set2X();
     oled.print(step);
-    oled.print("   C:");
+    oled.print("  C:");
     oled.print(c);
     oled.println(" ");
     oled.set1X();
