@@ -22,6 +22,7 @@ void init_display();
 void print_display();
 
 void init_buttons();
+void init_indicator();
 void check_save();
 
 void init_ds_sensors();
@@ -92,6 +93,7 @@ void setup() {
             // u8x8.setPowerSave(0);
     init_display();
     init_buttons();
+    init_indicator();
 
     init_ds_sensors();
     set_ds_resolution();

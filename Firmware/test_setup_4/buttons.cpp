@@ -13,6 +13,7 @@ const unsigned long debounceDelay = 500;  // 50ms debounce
 
 #define pin4 4
 bool save = true;
+#define indicator 5
 
 void down_interrupt(){
     // handleInterrupt(down_pressed);
@@ -113,11 +114,22 @@ void init_buttons() {
 
 }
 
+void init_indicator() {
+    pinMode(indicator, OUTPUT);
+}
+
+void indicate() {
+    digitalWrite(indicator, HIGH);
+    delay(1000);
+    digitalWrite(indicator, LOW);
+}
+
 void check_save() {
     bool save_button = digitalRead(pin4);
     if (save == true && save_button == false) {  // falling edge
         Serial.println(F("SAVED"));
         add_log();
+        indicate();
     }
     save = save_button;  // update state
 }
