@@ -99,6 +99,9 @@ void setup() {
     set_ds_resolution();
 
     init_dht_sensors();
+
+    pinMode(7, OUTPUT);
+    digitalWrite(7, LOW);
 }
 
 void loop() {
