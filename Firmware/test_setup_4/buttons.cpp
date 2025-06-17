@@ -39,21 +39,27 @@ void down_interrupt(){
         // Optional function call
         // compressor_speed_canvas();
 
-        Serial.print(F("DOWN "));
-        if (step > 0) {
-            step--;
+        if(digitalRead(pin4)) {
+            Serial.print(F("DOWN "));
+            if (step > 0) {
+                step--;
+            }
+            // If step reaches 0, set speed to 0
+            if (step == 0) {
+                speed = 0;
+            } 
+            else {
+                speed = start_speed + step * step_size; // Calculate the speed for the current step
+            }
+            analogWrite(compressor_pin, speed);
+            delay(100);
+            Serial.println(speed);
+            Serial.println(step);
         }
-        // If step reaches 0, set speed to 0
-        if (step == 0) {
-            speed = 0;
-        } 
-        else {
-            speed = start_speed + step * step_size; // Calculate the speed for the current step
+
+        else{
+            Serial.println("Toggle Compressor");
         }
-        analogWrite(compressor_pin, speed);
-        delay(100);
-        Serial.println(speed);
-        Serial.println(step);
     }
 }
 
@@ -130,6 +136,8 @@ void check_save() {
         save=save_button;
         if(!(save)){
             Serial.println(F("SAVED"));
+            add_log();
+            indicate();
         }
     }
     // if (save == true && save_button == false) {  // falling edge
