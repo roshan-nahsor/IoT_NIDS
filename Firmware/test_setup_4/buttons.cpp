@@ -81,8 +81,8 @@ void down_interrupt(){
             }
             analogWrite(compressor_pin, speed);
             delay(100);
-            Serial.println(speed);
-            Serial.println(step);
+            // Serial.println(speed);
+            // Serial.println(step);
         }
 
         else{
@@ -129,8 +129,8 @@ void up_interrupt(){
                 speed = start_speed + step * step_size; // Calculate the speed for the current step
             }
             analogWrite(compressor_pin, speed);
-            Serial.println(speed);
-            Serial.println(step);
+            // Serial.println(speed);
+            // Serial.println(step);
         } else {
             Serial.println(F("SAVED"));
             add_log();
