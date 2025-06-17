@@ -139,7 +139,7 @@ void loop() {
     get_pressure();
     get_dht_values();
 
-    check_save();
+    // check_save();
 
         // add_log();
 }

@@ -15,6 +15,34 @@ const unsigned long debounceDelay = 500;  // 50ms debounce
 bool save = true;
 #define indicator 5
 
+void init_indicator() {
+    pinMode(indicator, OUTPUT);
+}
+
+void indicate() {
+    digitalWrite(indicator, HIGH);
+    delay(1000);
+    digitalWrite(indicator, LOW);
+}
+
+void check_save() {
+    bool save_button = digitalRead(pin4);
+    if(save!=save_button) {
+        save=save_button;
+        if(!(save) && digitalRead(pin2) && digitalRead(pin3)){
+            Serial.println(F("SAVED"));
+            add_log();
+            indicate();
+        }
+    }
+    // if (save == true && save_button == false) {  // falling edge
+    //     Serial.println(F("SAVED"));
+    //     add_log();
+    //     indicate();
+    // }
+    // save = save_button;  // update state
+}
+
 void down_interrupt(){
     // handleInterrupt(down_pressed);
     unsigned long currentTime = millis();
@@ -86,22 +114,28 @@ void up_interrupt(){
 
         // Optional function call
         // compressor_speed_canvas();
-        Serial.print(F("UP "));
-        if (step < steps) {
-            step++;
-        }
-        // If step reaches 18, set speed to 255
-        if (step == steps) {
-            speed = end_speed;
-        // } else if(step==1) {
-        //     analogWrite(compressor_pin, 100);
-        //     delay(2000);
+        if(digitalRead(pin4)) {
+            Serial.print(F("UP "));
+            if (step < steps) {
+                step++;
+            }
+            // If step reaches 18, set speed to 255
+            if (step == steps) {
+                speed = end_speed;
+            // } else if(step==1) {
+            //     analogWrite(compressor_pin, 100);
+            //     delay(2000);
+            } else {
+                speed = start_speed + step * step_size; // Calculate the speed for the current step
+            }
+            analogWrite(compressor_pin, speed);
+            Serial.println(speed);
+            Serial.println(step);
         } else {
-            speed = start_speed + step * step_size; // Calculate the speed for the current step
+            Serial.println(F("SAVED"));
+            add_log();
+            indicate();
         }
-        analogWrite(compressor_pin, speed);
-        Serial.println(speed);
-        Serial.println(step);
 
         // u8g2.setFont(u8g2_font_profont22_tn);	// choose a suitable font
         // // u8g2.drawStr(40,17,"18");	// write something to the internal memory
@@ -118,32 +152,4 @@ void init_buttons() {
 
     pinMode(pin4, INPUT_PULLUP);  // Button uses internal pull-up
 
-}
-
-void init_indicator() {
-    pinMode(indicator, OUTPUT);
-}
-
-void indicate() {
-    digitalWrite(indicator, HIGH);
-    delay(1000);
-    digitalWrite(indicator, LOW);
-}
-
-void check_save() {
-    bool save_button = digitalRead(pin4);
-    if(save!=save_button) {
-        save=save_button;
-        if(!(save)){
-            Serial.println(F("SAVED"));
-            add_log();
-            indicate();
-        }
-    }
-    // if (save == true && save_button == false) {  // falling edge
-    //     Serial.println(F("SAVED"));
-    //     add_log();
-    //     indicate();
-    // }
-    // save = save_button;  // update state
 }
