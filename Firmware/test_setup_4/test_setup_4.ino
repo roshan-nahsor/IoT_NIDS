@@ -4,7 +4,7 @@
 // #include <SD.h>
 
 // #include "sd.cpp"
-
+#include "globals.h"
 
 
 // Use 1-byte page buffer mode for low RAM on Nano
@@ -38,6 +38,10 @@ void get_pressure();
 void init_dht_sensors();
 void get_dht_values();
 
+void init_compressor() {
+    pinMode(compressor_en,OUTPUT);
+    digitalWrite(compressor_en, EN);
+}
 
 void setup() {
     Serial.begin(9600);
@@ -100,8 +104,9 @@ void setup() {
 
     init_dht_sensors();
 
-    pinMode(7, OUTPUT);
-    digitalWrite(7, LOW);
+    // pinMode(7, OUTPUT);
+    // digitalWrite(7, LOW);
+    init_compressor();
 }
 
 void loop() {

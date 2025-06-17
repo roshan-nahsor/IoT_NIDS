@@ -32,7 +32,9 @@ void init_display() {
 void print_display() {
     oled.clear();
     oled.set2X();
+    oled.setInvertMode(EN);
     oled.print(step);
+    oled.setInvertMode(false);
     oled.print("  C:");
     oled.print(c);
     oled.println(" ");
@@ -61,18 +63,18 @@ void print_display() {
     // oled.print(rf);
     // oled.println(" ");
 
-    oled.print("ET:");
-    oled.print(et);
-    oled.print(" ");
-    oled.print("EH:");
-    oled.print(eh);
-    oled.println(" ");
+    // oled.print("ET:");
+    // oled.print(et);
+    // oled.print(" ");
+    // oled.print("EH:");
+    // oled.print(eh);
+    // oled.println(" ");
 
-    oled.print("CT:");
-    oled.print(ct);
-    oled.print(" ");
-    oled.print("CH:");
-    oled.print(ch);
-    oled.println(" ");
+    // oled.print("CT:");
+    // oled.print(ct);
+    // oled.print(" ");
+    // oled.print("CH:");
+    // oled.print(ch);
+    // oled.println(" ");
         // oled.println("Hello World!");
 }
