@@ -30,7 +30,7 @@ void check_save() {
     if(save!=save_button) {
         save=save_button;
         if(!(save) && digitalRead(pin2) && digitalRead(pin3)){
-            Serial.println(F("SAVED"));
+            // Serial.println(F("SAVED"));
             add_log();
             indicate();
         }
@@ -68,7 +68,7 @@ void down_interrupt(){
         // compressor_speed_canvas();
 
         if(digitalRead(pin4)) {
-            Serial.print(F("DOWN "));
+            // Serial.print(F("DOWN "));
             if (step > 0) {
                 step--;
             }
@@ -86,7 +86,7 @@ void down_interrupt(){
         }
 
         else{
-            Serial.println("Toggle Compressor");
+            // Serial.println("Toggle Compressor");
             EN=!EN;
             digitalWrite(compressor_en, EN);
         }
@@ -117,7 +117,7 @@ void up_interrupt(){
         // Optional function call
         // compressor_speed_canvas();
         if(digitalRead(pin4)) {
-            Serial.print(F("UP "));
+            // Serial.print(F("UP "));
             if (step < steps) {
                 step++;
             }
