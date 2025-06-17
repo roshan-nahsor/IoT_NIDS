@@ -126,10 +126,16 @@ void indicate() {
 
 void check_save() {
     bool save_button = digitalRead(pin4);
-    if (save == true && save_button == false) {  // falling edge
-        Serial.println(F("SAVED"));
-        add_log();
-        indicate();
+    if(save!=save_button) {
+        save=save_button;
+        if(!(save)){
+            Serial.println(F("SAVED"));
+        }
     }
-    save = save_button;  // update state
+    // if (save == true && save_button == false) {  // falling edge
+    //     Serial.println(F("SAVED"));
+    //     add_log();
+    //     indicate();
+    // }
+    // save = save_button;  // update state
 }
