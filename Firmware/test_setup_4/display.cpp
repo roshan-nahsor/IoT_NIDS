@@ -42,12 +42,18 @@ void print_display() {
         // oled.print("C:");
         // oled.print(c);
         // oled.print(" ");
-    oled.print("CI:");
-    oled.print(ci);
-    oled.print(" ");
-    oled.print("CO:");
-    oled.println(co);
+    // oled.print("CI:");
+    // oled.print(ci);
+    // oled.print(" ");
+    // oled.print("CO:");
+    // oled.println(co);
         // oled.print("\t");
+
+    oled.print("PI:");
+    oled.print(pi);
+    oled.print(" ");
+    oled.print("PO:");
+    oled.println(po);
 
     // oled.print("EI:");
     // oled.print(ei);
