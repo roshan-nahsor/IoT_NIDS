@@ -1,9 +1,13 @@
+// #ifndef Adruino_H
+#include <Arduino.h>
+
+
 #ifndef GLOBALS_H
 #define GLOBALS_H
 
 #define compressor_sp 9
 #define compressor_en 7
-inline int EN = 255;
+inline uint8_t EN = 255;
 
 #define start_speed 75
 #define end_speed 255

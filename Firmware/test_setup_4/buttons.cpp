@@ -89,6 +89,7 @@ void down_interrupt(){
         else{
             // Serial.println("Toggle Compressor");
             EN=~EN;
+            Serial.println(EN);
             digitalWrite(compressor_en, EN);
         }
     }

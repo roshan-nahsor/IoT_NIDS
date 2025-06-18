@@ -32,7 +32,7 @@ void init_display() {
 void print_display() {
     oled.clear();
     oled.set2X();
-    oled.setInvertMode(EN);
+    oled.setInvertMode(!(bool)EN);
     oled.print(step);
     oled.setInvertMode(false);
     oled.print("  C:");
