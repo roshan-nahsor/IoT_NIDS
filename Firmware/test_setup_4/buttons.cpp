@@ -90,7 +90,8 @@ void down_interrupt(){
             // Serial.println("Toggle Compressor");
             EN=~EN;
             // Serial.println(EN);
-            digitalWrite(compressor_en, EN);
+            // digitalWrite(compressor_en, EN);
+            analogWrite(compressor_sp, (speed & EN));
         }
     }
 }

@@ -55,7 +55,7 @@ float get_ds_value(DeviceAddress deviceAddress) {
 
 void init_ds_sensors() {
     sensors.begin();
-    Serial.println(F("Dallas Temperature IC Control Library Demo"));
+    // Serial.println(F("Dallas Temperature IC Control Library Demo"));
 }
 
 void report_parasite_power () {

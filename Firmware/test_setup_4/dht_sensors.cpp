@@ -8,7 +8,7 @@ DHT coat(coat_pin, DHTTYPE);
 
 
 void init_dht_sensors() {
-    Serial.println(F("DHTxx test!"));
+    // Serial.println(F("DHTxx test!"));
 
     evaporator.begin();
     coat.begin();
