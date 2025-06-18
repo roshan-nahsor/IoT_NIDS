@@ -106,7 +106,7 @@ void setup() {
 
     // pinMode(7, OUTPUT);
     // digitalWrite(7, LOW);
-    init_compressor();
+    // init_compressor();
 }
 
 void loop() {

@@ -3,7 +3,7 @@
 
 #define compressor_sp 9
 #define compressor_en 7
-inline bool EN = true;
+inline int EN = 255;
 
 #define start_speed 75
 #define end_speed 255
