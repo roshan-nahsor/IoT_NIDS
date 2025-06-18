@@ -81,15 +81,15 @@ void down_interrupt(){
             }
             analogWrite(compressor_sp, (speed & EN));
             delay(100);
-            Serial.println(speed);
+            // Serial.println(speed);
             // Serial.println(step);
-            Serial.println(speed & EN);
+            // Serial.println(speed & EN);
         }
 
         else{
             // Serial.println("Toggle Compressor");
             EN=~EN;
-            Serial.println(EN);
+            // Serial.println(EN);
             digitalWrite(compressor_en, EN);
         }
     }
@@ -133,9 +133,9 @@ void up_interrupt(){
                 speed = start_speed + step * step_size; // Calculate the speed for the current step
             }
             analogWrite(compressor_sp, (speed & EN));
-            Serial.println(speed);
+            // Serial.println(speed);
             // Serial.println(step);
-            Serial.println(speed & EN);
+            // Serial.println(speed & EN);
 
         } else {
             Serial.println(F("SAVED"));
