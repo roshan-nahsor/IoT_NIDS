@@ -139,7 +139,7 @@ void up_interrupt(){
             // Serial.println(speed & EN);
 
         } else {
-            Serial.println(F("SAVED"));
+            // Serial.println(F("SAVED"));
             add_log();
             indicate();
         }
@@ -153,9 +153,9 @@ void up_interrupt(){
 
 void init_buttons() {
     pinMode(pin2, INPUT_PULLUP);  // Button uses internal pull-up
-    attachInterrupt(digitalPinToInterrupt(pin2), down_interrupt, FALLING);
+    attachInterrupt(digitalPinToInterrupt(pin2), down_interrupt, LOW);
     pinMode(pin3, INPUT_PULLUP);  // Button uses internal pull-up
-    attachInterrupt(digitalPinToInterrupt(pin3), up_interrupt, FALLING);
+    attachInterrupt(digitalPinToInterrupt(pin3), up_interrupt, LOW);
 
     pinMode(pin4, INPUT_PULLUP);  // Button uses internal pull-up
 
