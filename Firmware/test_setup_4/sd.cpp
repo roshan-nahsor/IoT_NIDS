@@ -7,6 +7,8 @@
 // const int SD_CS = 10;
 #define cs_pin 10
 
+#define file_location "logs/f_5.csv"
+
 void init_sd() {
     if (!SD.begin(cs_pin)) {
         Serial.println(F("SD initialization failed!"));
@@ -15,16 +17,17 @@ void init_sd() {
 }
 
 void init_file() {
-    String dataString = "---new log---";
+    // String dataString = "---new log---";
+    String dataString = "step,speed,c,ci,co,pi,po,ei,eo,lf,rf,et,eh,ct,ch;";
 
-    File dataFile = SD.open("logs/f_4.csv", FILE_WRITE);
+    File dataFile = SD.open(file_location, FILE_WRITE);
 
         // if the file is available, write to it:
     if (dataFile) {
         dataFile.println(dataString);
         dataFile.close();
             // print to the serial port too:
-        Serial.println(dataString);
+        // Serial.println(dataString);
     }
         // if the file isn't open, pop up an error:
     else {
@@ -54,7 +57,7 @@ void add_log() {
                     String(ch)+";";
 
 
-    File dataFile = SD.open("logs/f_4.csv", FILE_WRITE);
+    File dataFile = SD.open(file_location, FILE_WRITE);
 
     // if the file is available, write to it:
     if (dataFile) {
