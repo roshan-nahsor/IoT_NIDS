@@ -18,7 +18,7 @@ void init_sd() {
 
 void init_file() {
     // String dataString = "---new log---";
-    String dataString = "step,speed,c,ci,co,pi,po,ei,eo,lf,rf,et,eh,ct,ch;";
+    String dataString = F("step,speed,c,ci,co,pi,po,ei,eo,lf,rf,et,eh,ct,ch;");
 
     File dataFile = SD.open(file_location, FILE_WRITE);
 
