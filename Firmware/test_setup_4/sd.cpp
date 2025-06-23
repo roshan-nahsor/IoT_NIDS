@@ -18,7 +18,7 @@ void init_sd() {
 
 void init_file() {
     // String dataString = "---new log---";
-    String dataString = F("step,speed,c,ci,co,pi,po,ei,eo,lf,rf,et,eh,ct,ch;");
+    String dataString = F("step,speed,c,ci,co,pi,po,ei,eo,lf,rf,et,eh,ct,ch");
 
     File dataFile = SD.open(file_location, FILE_WRITE);
 
@@ -40,28 +40,59 @@ void add_log() {
 //              mode spd c    ci   co   pi   po   ei   eo   lf   rf   et   eh   ct   ch
     // dataString = "15,255,45.3,25.6,25.6,25.6,25.6,25.6,25.6,25.6,25.6,25.6,25.6,25.6,14.6;";
 
-    dataString =    String(step)+","+
-                    String(speed)+","+
-                    String(c)+","+
-                    String(ci)+","+
-                    String(co)+","+
-                    String(pi)+","+
-                    String(po)+","+
-                    String(ei)+","+
-                    String(eo)+","+
-                    String(lf)+","+
-                    String(rf)+","+
-                    String(et)+","+
-                    String(eh)+","+
-                    String(ct)+","+
-                    String(ch)+";";
+    // dataString =    String(step)+","+
+    //                 String(speed)+","+
+    //                 String(c)+","+
+    //                 String(ci)+","+
+    //                 String(co)+","+
+    //                 String(pi)+","+
+    //                 String(po)+","+
+    //                 String(ei)+","+
+    //                 String(eo)+","+
+    //                 String(lf)+","+
+    //                 String(rf)+","+
+    //                 String(et)+","+
+    //                 String(eh)+","+
+    //                 String(ct)+","+
+    //                 String(ch)+";";
 
 
     File dataFile = SD.open(file_location, FILE_WRITE);
 
     // if the file is available, write to it:
     if (dataFile) {
-        dataFile.println(dataString);
+        // dataFile.println(dataString);
+        dataFile.print(   
+            String(step)+","+
+            String(speed)+","
+        );
+
+        dataFile.print(
+            String(c)+","+
+            String(ci)+","+
+            String(co)+","
+        );
+        dataFile.print(
+            String(pi)+","+
+            String(po)+","
+        );
+        dataFile.print(   
+            String(ei)+","+
+            String(eo)+","
+        );
+        dataFile.print(
+            String(lf)+","+
+            String(rf)+","
+        );
+        dataFile.print(
+            String(et)+","+
+            String(eh)+","
+        );
+        dataFile.println(
+            String(ct)+","+
+            String(ch)
+        );
+
         dataFile.close();
         // print to the serial port too:
         // Serial.println(dataString);

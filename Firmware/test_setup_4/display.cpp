@@ -42,11 +42,11 @@ void print_display() {
         // oled.print("C:");
         // oled.print(c);
         // oled.print(" ");
-    // oled.print("CI:");
-    // oled.print(ci);
-    // oled.print(" ");
-    // oled.print("CO:");
-    // oled.println(co);
+    oled.print("CI:");
+    oled.print(ci);
+    oled.print(" ");
+    oled.print("CO:");
+    oled.println(co);
         // oled.print("\t");
 
     oled.print("PI:");
@@ -55,32 +55,32 @@ void print_display() {
     oled.print("PO:");
     oled.println(po);
 
-    // oled.print("EI:");
-    // oled.print(ei);
-    // oled.print(" ");
-    // oled.print("EO:");
-    // oled.print(eo);
-    // oled.println(" ");
+    oled.print("EI:");
+    oled.print(ei);
+    oled.print(" ");
+    oled.print("EO:");
+    oled.print(eo);
+    oled.println(" ");
 
-    // oled.print("LF:");
-    // oled.print(lf);
-    // oled.print(" ");
-    // oled.print("RF:");
-    // oled.print(rf);
-    // oled.println(" ");
+    oled.print("LF:");
+    oled.print(lf);
+    oled.print(" ");
+    oled.print("RF:");
+    oled.print(rf);
+    oled.println(" ");
 
-    // oled.print("ET:");
-    // oled.print(et);
-    // oled.print(" ");
-    // oled.print("EH:");
-    // oled.print(eh);
-    // oled.println(" ");
+    oled.print("ET:");
+    oled.print(et);
+    oled.print(" ");
+    oled.print("EH:");
+    oled.print(eh);
+    oled.println(" ");
 
-    // oled.print("CT:");
-    // oled.print(ct);
-    // oled.print(" ");
-    // oled.print("CH:");
-    // oled.print(ch);
-    // oled.println(" ");
+    oled.print("CT:");
+    oled.print(ct);
+    oled.print(" ");
+    oled.print("CH:");
+    oled.print(ch);
+    oled.println(" ");
         // oled.println("Hello World!");
 }
