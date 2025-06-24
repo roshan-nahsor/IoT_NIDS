@@ -22,4 +22,6 @@ inline float c, ci, co, ei, eo, lf, rf, et, eh, ct, ch, pi, po;
 
 inline bool c_en;
 
+inline bool WARNING_FLAG=false;
+
 #endif

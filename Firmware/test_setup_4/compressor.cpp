@@ -14,9 +14,9 @@ void safety_check() {
         // speed = 0;
         // step = 0;
         init_compressor();
-        // WARNING_FLAG=true;
+        WARNING_FLAG=true;
     }
     else{
-        // WARNING_FLAG=false;
+        WARNING_FLAG=false;
     }
 }
