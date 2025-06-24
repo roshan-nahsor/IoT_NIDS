@@ -38,10 +38,8 @@ void get_pressure();
 void init_dht_sensors();
 void get_dht_values();
 
-void init_compressor() {
-    pinMode(compressor_en,OUTPUT);
-    digitalWrite(compressor_en, EN);
-}
+void init_compressor();
+void safety_check();
 
 void setup() {
     Serial.begin(9600);
@@ -106,7 +104,7 @@ void setup() {
 
     // pinMode(7, OUTPUT);
     // digitalWrite(7, LOW);
-    // init_compressor();
+    init_compressor();
 }
 
 void loop() {
@@ -147,4 +145,5 @@ void loop() {
     // check_save();
 
         // add_log();
+    safety_check();
 }
