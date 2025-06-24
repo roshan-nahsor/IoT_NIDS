@@ -11,7 +11,7 @@ void init_compressor() {
 
 
 void safety_check() {
-    if(c>31) {
+    if(c>74) {
         // speed = 0;
         // step = 0;
         init_compressor();
