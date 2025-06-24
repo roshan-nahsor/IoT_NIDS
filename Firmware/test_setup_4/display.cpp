@@ -74,19 +74,19 @@ void print_display() {
     oled.print(" ");
     oled.print("EH:");
     oled.print(eh);
-    oled.print("  ");
-    // if(WARNING_FLAG)
-        oled.println("!!!TOO");
+    oled.print(" ");
+    if(WARNING_FLAG)
+        oled.print("!!TOO");
 
-
+    oled.println("");
     oled.print("CT:");
     oled.print(ct);
     oled.print(" ");
     oled.print("CH:");
     oled.print(ch);
-    oled.print("  ");
+    oled.print(" ");
         // oled.println("Hello World!");
 
-    // if(WARNING_FLAG)
-        oled.print("HOT!!!");
+    if(WARNING_FLAG)
+        oled.print("HOT!!");
 }
